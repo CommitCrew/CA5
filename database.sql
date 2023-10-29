@@ -1,4 +1,4 @@
-CREATE database user_Info
+CREATE database user_Info;
 
 use user_Info;
 
