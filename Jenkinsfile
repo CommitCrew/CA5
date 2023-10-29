@@ -3,40 +3,35 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY = "docker.io"
-        imageName = "my-mysql-image"
-        imageTag = "latest"
+        DOCKER_IMAGE_NAME = "my-mysql-image" // Corrected variable name
+        DOCKER_IMAGE_TAG = "latest"
     }
 
     stages {
-      
-
-         stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     echo "Building web server image"
-                    sh "docker build ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
-                    
+                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    echo "push image"
-                     // Use withCredentials to access Docker Hub credentials
+                    echo "Pushing image"
+                    // Use withCredentials to access Docker Hub credentials
                     withCredentials([usernamePassword(credentialsId: 'db-pipeline', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                     
-                    sh "docker push - ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
-                    
+                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                    }
                 }
             }
         }
-    
+    }
+
     post {
         success {
-            echo "Docker image built successfully!"
+            echo "Docker image built and pushed successfully!"
         }
     }
-}
-     
 }
