@@ -9,7 +9,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'my-db-pipeline', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
                         // Define the name and tag for your Docker image
                         def imageName = 'my-mysql-image'
-                        def imageTag = 'lts'
+                        def imageTag = env.BUILD_NUMBER 
 
                         // Build the Docker image using the Dockerfile
                         def myImage = docker.build("${imageName}:${imageTag}", "-f db/dockerfile .")
