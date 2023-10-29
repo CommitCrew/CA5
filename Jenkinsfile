@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_REGISTRY = "docker.io"
-        DOCKER_IMAGE_NAME = "flaskAppTask05"
+        DOCKER_IMAGE_NAME = "flask_app_task05"
         DOCKER_IMAGE_TAG = "latest"
     }
     stages {
@@ -11,6 +11,12 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Initialize Docker'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
