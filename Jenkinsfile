@@ -8,26 +8,26 @@ pipeline {
     }
 
     stages {
-        // stage('Build and Push Database Image') {
-        //     steps {
-        //         script {
-        //             // Use withCredentials to access Docker Hub credentials
-        //             withCredentials([usernamePassword(credentialsId: 'my-db-pipeline', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                     
-
-        //                 // Build the Docker image using the Dockerfile
-        //                 def myImage = docker.build("${imageName}:${imageTag}", "-f db/dockerfile .")
-        //                 // myImage.push()
-        //             }
-        //         }
-        //     }
-        // }
+      
 
          stage('Build Docker Image') {
             steps {
                 script {
                     echo "Building web server image"
-                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                    sh "docker build ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                    
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    echo "push image"
+                     // Use withCredentials to access Docker Hub credentials
+                    withCredentials([usernamePassword(credentialsId: 'my-db-pipeline', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                     
+                    sh "docker push - ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                    
                 }
             }
         }
