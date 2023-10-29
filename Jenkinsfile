@@ -1,22 +1,20 @@
 pipeline {
     agent any
-    tools {
-        // Define the name of the Docker installation defined in Jenkins configuration
-        dockerTool 'Docker'
-    }
 
     stages {
         stage('Build and Push Database Image') {
             steps {
                 script {
-                   
-                    // Build the Docker image using the Dockerfile
-                   
-                    def myImage = docker.build("my-mysql-image:${env.BUILD_NUMBER}", "-f db/dockerfile .")
-                    myImage.push()
-                    
+                    // Use withCredentials to access Docker Hub credentials
+                    withCredentials([usernamePassword(credentialsId: 'my-db-pipeline', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                        // Define the name and tag for your Docker image
+                        def imageName = 'my-mysql-image'
+                        def imageTag = 'lts'
 
-                    
+                        // Build the Docker image using the Dockerfile
+                        def myImage = docker.build("${imageName}:${imageTag}", "-f db/dockerfile .")
+                        myImage.push()
+                    }
                 }
             }
         }
