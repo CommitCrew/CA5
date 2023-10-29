@@ -2,6 +2,9 @@ FROM python:3.9
 WORKDIR /app
 COPY . /app
 
+# Update the package manager
+RUN apt-get update
+
 # Upgrade pip first
 RUN pip install --upgrade pip
 
