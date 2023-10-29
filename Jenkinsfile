@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        // Define the name of the Docker installation defined in Jenkins configuration
-        dockerTool 'Docker'
-    }
-    
+   
 
     stages {
         stage('Build and Push Database Image') {
