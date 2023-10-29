@@ -2,11 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build and Push Docker Image') {
             steps {
-                echo 'Building'
-                // Add your build steps here
+                checkout scm
+                script {
+                    dockerImage = docker.build("commitcrew/flaskAppTask05:latest")
+                }
+
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Docker image build successful!'
         }
     }
 }
