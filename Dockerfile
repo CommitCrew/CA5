@@ -1,6 +1,6 @@
 FROM python:3.9
-WORKDIR /app
-COPY . /app
+WORKDIR /task05
+COPY . /task05
 RUN pip install flask
 RUN pip install -r requirements.txt
 EXPOSE 8080
