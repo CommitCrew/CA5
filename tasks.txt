@@ -1,0 +1,7 @@
+Member 1: Hadiya Farooq (i200579)
+Member 2: Zuha Umar (i200603)
+Member 3: Fatima Abdul Wahid (i200711)
+
+Fatima created database image, pushed it on docker hub using jenkins.
+Zuha created flask app image, pushed it on docker hub using jenkins.
+Hadiya created jenkins file to pull both the created images and build them.
