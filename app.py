@@ -33,4 +33,4 @@ def index():
         return "An error occurred while processing your request.", 500  # Return a 500 Internal Server Error response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
