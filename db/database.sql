@@ -1,4 +1,5 @@
-create database userInfo;
+
+
 use userInfo;
 
 create table users(
