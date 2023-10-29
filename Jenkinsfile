@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     sh "docker run -d -p 5432:5432 --name ca5-db commitcrew/my-mysql-image:latest"
-                    sh "docker run -d -p 3000:5000 --name ca5-app --link ca5-db commitcrew/flask_app_task05:latest"
+                    sh "docker run -d -p 8080:8080 --name ca5-app --link ca5-db commitcrew/flask_app_task05:latest"
                 }
             }
         }
