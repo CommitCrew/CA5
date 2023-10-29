@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "flask_app_task05"
+        DOCKER_IMAGE_NAME = "commitcrew/flask_app_task05"
         DOCKER_IMAGE_TAG = "latest"
     }
     stages {
