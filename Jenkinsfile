@@ -32,11 +32,4 @@ pipeline {
         }
 
     }
-
-    post {
-        always {
-            sh "docker stop ca5-app ca5-db"
-            sh "docker rm ca5-app ca5-db"
-        }
-    }
 }
