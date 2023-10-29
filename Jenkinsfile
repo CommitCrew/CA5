@@ -4,10 +4,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                checkout scm
-                script {
-                    dockerImage = docker.build("commitcrew/flaskAppTask05:latest")
-                }
+                    echo'building lala'
             }
         }
     }
