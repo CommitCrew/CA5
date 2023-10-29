@@ -1,6 +1,6 @@
+CREATE database user_Info
 
-
-use userInfo;
+use user_Info;
 
 create table users(
 
