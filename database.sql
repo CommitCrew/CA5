@@ -1,8 +1,8 @@
-CREATE database user_Info;
+CREATE database studentInfo;
 
-use user_Info;
+use studentInfo;
 
-create table users(
+create table studentInfo(
 
 		userID int,
         FirstName varchar(50),
@@ -10,5 +10,5 @@ create table users(
         Primary key(userID)
         
 );
-Insert INTO users(userID,FirstName,LastName)
+Insert INTO studentInfo(userID,FirstName,LastName)
 Values(1,"Fatima","Abdul Wahid"),(2,"Zuha","Umar"),(3,"Hadiya","Farooq");
