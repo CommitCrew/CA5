@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = "docker.io"
-        DOCKER_IMAGE_NAME = "my-mysql-image" // Corrected variable name
+       
+        DOCKER_IMAGE_NAME = "commitcrew/my-mysql-image" // Corrected variable name
         DOCKER_IMAGE_TAG = "latest"
     }
 
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo "Building web server image"
-                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
                     ]) 
                     {
                         sh "echo \$DOCKER_HUB_PASSWORD | docker login -u \$DOCKER_HUB_USERNAME --password-stdin"
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                        sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
                     }
                 }
             }
