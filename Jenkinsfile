@@ -37,7 +37,7 @@ pipeline {
     }
     post {
         success {
-            echo "Docker image built and pushed successfully to Docker Hub!"
+            echo "Docker image built and pushed successfully to Docker Hub!!"
         }
     }
 }
